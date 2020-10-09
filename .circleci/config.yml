@@ -2,18 +2,18 @@ version: 2
 jobs:
   validate:
     docker:
-      image: node:10
+      image: circleci/node@2.2
     steps:
       - checkout
       - run: 
-        name: Starting
-        command: echo "Starting circleCI"
+          name: Starting
+          command: echo "Starting circleCI"
       - run:
-        name: Install dependencies
-        command: npm install
+          name: Install dependencies
+          command: npm install
       - run: 
-        name: Execute NodeJS
-        command: node index.js
+          name: Execute NodeJS
+          command: node index.js
 
   restart-compose:
     docker:
@@ -29,5 +29,5 @@ workflows:
     jobs:
       - validate
       - restart-compose:
-        requires:
-          - validate
+          requires:
+            - validate
